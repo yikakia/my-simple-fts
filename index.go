@@ -1,10 +1,10 @@
 package main
 
-// index is an inverted index. It maps tokens to document IDs.
-type index map[string][]int
+// Index is an inverted Index. It maps tokens to Document IDs.
+type Index map[string][]int
 
-// add adds documents to the index.
-func (idx index) add(docs []document) {
+// add adds documents to the Index.
+func (idx Index) add(docs []Document) {
 	for _, doc := range docs {
 		for _, token := range analyze(doc.Text) {
 			ids := idx[token]
@@ -40,8 +40,8 @@ func intersection(a []int, b []int) []int {
 	return r
 }
 
-// search queries the index for the given text.
-func (idx index) search(text string) []int {
+// search queries the Index for the given text.
+func (idx Index) search(text string) []int {
 	var r []int
 	for _, token := range analyze(text) {
 		if ids, ok := idx[token]; ok {
